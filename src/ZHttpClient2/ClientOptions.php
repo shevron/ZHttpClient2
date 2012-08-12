@@ -3,7 +3,7 @@
 namespace ZHttpClient2;
 
 use Zend\Stdlib\AbstractOptions;
-use Zend\Http\Transport\Options as TransportOptions;
+use ZHttpClient2\Transport\Options as TransportOptions;
 
 class ClientOptions extends AbstractOptions
 {

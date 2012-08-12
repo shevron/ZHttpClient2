@@ -11,9 +11,9 @@
 namespace ZHttpClient2;
 
 use Zend\Uri\Http as HttpUri;
-use Zend\Http\Header\Cookie;
-use Zend\Http\CookieStore\AbstractCookieStore;
-use Zend\Http\Transport\Transport as HttpTransport;
+use ZHttpClient2\Header\Cookie;
+use ZHttpClient2\CookieStore\AbstractCookieStore;
+use ZHttpClient2\Transport\Transport as HttpTransport;
 use Zend\Stdlib\Parameters;
 use Zend\Stdlib\ParametersInterface;
 use Zend\Stdlib\DispatchableInterface;

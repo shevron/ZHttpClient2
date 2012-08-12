@@ -2,9 +2,9 @@
 
 namespace ZHttpClient2\CookieStore;
 
-use Zend\Http\Header\Cookie as CookieHeader;
-use Zend\Http\Request;
-use Zend\Http\Response;
+use ZHttpClient2\Header\Cookie as CookieHeader;
+use ZHttpClient2\Request;
+use ZHttpClient2\Response;
 
 class Null extends AbstractCookieStore
 {

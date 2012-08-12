@@ -4,7 +4,7 @@ namespace ZHttpClient2\CookieStore;
 
 use ArrayObject;
 use Zend\Uri\Http as HttpUri;
-use Zend\Http\Header\SetCookie as SetCookieHeader;
+use ZHttpClient2\Header\SetCookie as SetCookieHeader;
 
 class Simple extends AbstractCookieStore
 {
