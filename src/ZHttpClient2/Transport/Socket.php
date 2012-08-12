@@ -113,8 +113,8 @@ class Socket implements Transport
      * stream_context_create() PHP function. In such case a new stream context
      * will be created using the passed options.
      *
-     * @param  mixed                              $context Stream context or array of context options
-     * @return \Zend\Http\Client\Transport\Socket
+     * @param  mixed $context Stream context or array of context options
+     * @return ZHttpClient2\Transport\Socket
      */
     public function setStreamContext($context)
     {

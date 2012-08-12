@@ -16,6 +16,7 @@ use Zend\Stdlib\ParametersInterface;
 use Zend\Stdlib\RequestInterface;
 use Zend\Uri\Exception as ExceptionUri;
 use Zend\Uri\Http as HttpUri;
+use Zend\Http\Headers;
 
 class Request extends Message implements RequestInterface
 {
@@ -378,12 +379,12 @@ class Request extends Message implements RequestInterface
 
         } elseif (! $value) {
             // Reset content headers
-            if ($this->headers()->has('Content-type')) {
-                $this->headers()->removeHeader($this->headers()->get('Content-type'));
+            if ($this->getHeaders()->has('Content-type')) {
+                $this->getHeaders()->removeHeader($this->getHeaders()->get('Content-type'));
             }
 
-            if ($this->headers()->has('Content-length')) {
-                $this->headers()->removeHeader($this->headers()->get('Content-length'));
+            if ($this->getHeaders()->has('Content-length')) {
+                $this->getHeaders()->removeHeader($this->getHeaders()->get('Content-length'));
             }
         }
 

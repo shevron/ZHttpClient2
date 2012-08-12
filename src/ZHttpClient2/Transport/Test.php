@@ -3,8 +3,7 @@
 namespace ZHttpClient2\Transport;
 
 use ZHttpClient2\Request;
-use
-    Zend\Http\Response;
+use ZHttpClient2\Response;
 
 class Test implements Transport
 {

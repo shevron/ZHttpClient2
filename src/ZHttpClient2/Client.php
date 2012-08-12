@@ -11,7 +11,8 @@
 namespace ZHttpClient2;
 
 use Zend\Uri\Http as HttpUri;
-use ZHttpClient2\Header\Cookie;
+use Zend\Http\Headers;
+use Zend\Http\Header\Cookie;
 use ZHttpClient2\CookieStore\AbstractCookieStore;
 use ZHttpClient2\Transport\Transport as HttpTransport;
 use Zend\Stdlib\Parameters;
@@ -49,14 +50,14 @@ class Client implements DispatchableInterface
      *
      * @var string
      */
-    protected static $defaultTransport = 'Zend\Http\Transport\Socket';
+    protected static $defaultTransport = 'ZHttpClient2\Transport\Socket';
 
     /**
      * Default cookie storage container class
      *
      * @var string
      */
-    protected static $defaultCookieStore = 'Zend\Http\CookieStore\Simple';
+    protected static $defaultCookieStore = 'ZHttpClient2\CookieStore\Simple';
 
     /**
      * @var Transport
@@ -216,7 +217,7 @@ class Client implements DispatchableInterface
      *
      * @return \Zend\Http\Headers
      */
-    public function headers()
+    public function getHeaders()
     {
         if (! $this->headers) {
             $this->headers = new Headers();
@@ -362,7 +363,7 @@ class Client implements DispatchableInterface
 
             // If we got redirected, look for the Location header
             if ($response->isRedirect() &&
-                $response->headers()->has('Location') &&
+                $response->getHeaders()->has('Location') &&
                 $this->redirectCounter < $this->options->getMaxRedirects()) {
 
                 $request = $this->getNextRequestForRedirection($response, $request);
@@ -382,7 +383,7 @@ class Client implements DispatchableInterface
     {
         // Avoid problems with buggy servers that add whitespace at the
         // end of some headers
-        $location = trim($response->headers()->get('Location')->getFieldValue());
+        $location = trim($response->getHeaders()->get('Location')->getFieldValue());
 
         // Check whether we send the exact same request again, or drop the parameters
         // and send a GET request
@@ -394,16 +395,16 @@ class Client implements DispatchableInterface
             $request->setContent(null);
         }
 
-        $uri = HttpUri::merge($request->uri(), $location)->normalize();
+        $uri = HttpUri::merge($request->getUri(), $location)->normalize();
         $request->setUri($uri)
-                ->headers()->removeHeader($request->headers()->get('Host'));
+                ->getHeaders()->removeHeader($request->getHeaders()->get('Host'));
 
         return $request;
     }
 
     protected function prepareRequest(Request $request)
     {
-        foreach ($this->headers() as $header) {
+        foreach ($this->getHeaders() as $header) {
             $key = $header->getFieldName();
             if (! $request->getHeaders()->has($key)) {
                 $request->getHeaders()->addHeader($header);
@@ -492,9 +493,9 @@ class Client implements DispatchableInterface
         }
 
         if ($contentType) {
-            $request->headers()->addHeaderLine("Content-type", $contentType);
+            $request->getHeaders()->addHeaderLine("Content-type", $contentType);
         } else {
-            $request->headers()->addHeaderLine("Content-type", "application/octet-stream");
+            $request->getHeaders()->addHeaderLine("Content-type", "application/octet-stream");
         }
 
         return $this->send($request);
@@ -518,9 +519,9 @@ class Client implements DispatchableInterface
         }
 
         if ($contentType) {
-            $request->headers()->addHeaderLine("Content-type", $contentType);
+            $request->getHeaders()->addHeaderLine("Content-type", $contentType);
         } else {
-            $request->headers()->addHeaderLine("Content-type", "application/octet-stream");
+            $request->getHeaders()->addHeaderLine("Content-type", "application/octet-stream");
         }
 
         return $this->send($request);

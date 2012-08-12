@@ -10,9 +10,10 @@
 
 namespace ZHttpClient2;
 
-use ZHttpClient2\Header\Cookie;
-use ZHttpClient2\Response;
+use Zend\Http\Headers;
+use Zend\Http\Header\Cookie;
 use Zend\Uri;
+use ZHttpClient2\Response;
 
 /**
  * A Zend_Http_CookieJar object is designed to contain and maintain HTTP cookies, and should

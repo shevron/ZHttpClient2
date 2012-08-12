@@ -10,6 +10,7 @@
 
 namespace ZHttpClient2;
 
+use Zend\Http\Headers;
 use Zend\Stdlib\Message;
 use Zend\Stdlib\ResponseInterface;
 
