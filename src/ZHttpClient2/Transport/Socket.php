@@ -3,13 +3,12 @@
 namespace ZHttpClient2\Transport;
 
 use ZHttpClient2\Request;
-use
-    Zend\Http\Response,
-    Zend\Http\Entity\Entity,
-    Zend\Http\Entity\Writable as WritableEntity,
-    Zend\Http\Entity\UrlEncodedFormData,
-    Zend\Http\Header\ContentEncoding as CEHeader,
-    Zend\Log\Logger;
+use Zend\Http\Response;
+use Zend\Http\Entity\Entity;
+use Zend\Http\Entity\Writable as WritableEntity;
+use Zend\Http\Entity\UrlEncodedFormData;
+use Zend\Http\Header\ContentEncoding as CEHeader;
+use Zend\Log\Logger;
 
 class Socket implements Transport
 {

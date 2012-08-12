@@ -3,11 +3,10 @@
 namespace ZHttpClient2\CookieStore;
 
 use ZHttpClient2\Header\SetCookie as SetCookieHeader;
-use
-    Zend\Http\Header\Cookie as CookieHeader,
-    Zend\Http\Request,
-    Zend\Http\Response,
-    Zend\Uri\Http as HttpUri;
+use Zend\Http\Header\Cookie as CookieHeader;
+use Zend\Http\Request;
+use Zend\Http\Response;
+use Zend\Uri\Http as HttpUri;
 
 abstract class AbstractCookieStore implements \IteratorAggregate
 {
