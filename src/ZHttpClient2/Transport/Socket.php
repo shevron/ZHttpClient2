@@ -6,8 +6,6 @@ use ZHttpClient2\Request;
 use ZHttpClient2\Response;
 use ZHttpClient2\Entity\Entity;
 use ZHttpClient2\Entity\Writable as WritableEntity;
-use ZHttpClient2\Entity\UrlEncodedFormData;
-use ZHttpClient2\Header\ContentEncoding as CEHeader;
 use Zend\Log\Logger;
 
 class Socket implements Transport
