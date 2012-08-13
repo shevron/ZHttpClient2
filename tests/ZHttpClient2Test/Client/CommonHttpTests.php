@@ -49,14 +49,14 @@ abstract class CommonHttpTests extends \PHPUnit_Framework_TestCase
     /**
      * Common HTTP client
      *
-     * @var \Zend\Http\Client
+     * @var \ZHttpClient2\Client
      */
     protected $client = null;
 
     /**
      * Common HTTP client adapter
      *
-     * @var \Zend\Http\Client\Adapter\AdapterInterface
+     * @var \ZHttpClient2\Client\Adapter\AdapterInterface
      */
     protected $_adapter = null;
 
@@ -66,7 +66,7 @@ abstract class CommonHttpTests extends \PHPUnit_Framework_TestCase
      * @var array
      */
     protected $config = array(
-        'adapter'     => 'Zend\Http\Client\Adapter\Socket'
+        'adapter'     => 'ZHttpClient2\Client\Adapter\Socket'
     );
 
     /**
@@ -968,7 +968,7 @@ abstract class CommonHttpTests extends \PHPUnit_Framework_TestCase
         $this->client->setHeaders(array(
             'Content-Type' => $content_type
         ));
-        $this->client->setMethod(\Zend\Http\Request::METHOD_POST);
+        $this->client->setMethod(\ZHttpClient2\Request::METHOD_POST);
 
         $this->client->setParameterPost($params);
 

@@ -12,7 +12,7 @@ class StringTest extends \PHPUnit_Framework_TestCase
     /**
      * Entity object
      *
-     * @var Zend\Http\Entity\String
+     * @var ZHttpClient2\Entity\String
      */
     protected $entity = null;
 

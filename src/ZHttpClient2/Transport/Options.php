@@ -29,7 +29,7 @@ class Options extends AbstractOptions implements \IteratorAggregate
      *
      * @var string
      */
-    protected $defaultResponseClass = '\Zend\Http\Response';
+    protected $defaultResponseClass = '\ZHttpClient2\Response';
 
     /**
      * Class to use for response body objects
@@ -39,7 +39,7 @@ class Options extends AbstractOptions implements \IteratorAggregate
      *
      * @var string
      */
-    protected $defaultResponseBodyClass = '\Zend\Http\Entity\SmartBuffer';
+    protected $defaultResponseBodyClass = '\ZHttpClient2\Entity\SmartBuffer';
 
     /**
      * SSL client cerfiticate file
@@ -194,10 +194,10 @@ class Options extends AbstractOptions implements \IteratorAggregate
      */
     public function setDefaultResponseClass($defaultResponseClass)
     {
-        if (! ($defaultResponseClass == '\Zend\Http\Response' ||
-               is_subclass_of('\Zend\Http\Response', $defaultResponseClass))) {
+        if (! ($defaultResponseClass == '\ZHttpClient2\Response' ||
+               is_subclass_of('\ZHttpClient2\Response', $defaultResponseClass))) {
 
-            throw new Exception\InvalidArgumentException('Invalid argument passed as default response class: not a subclass of Zend\Http\Response');
+            throw new Exception\InvalidArgumentException('Invalid argument passed as default response class: not a subclass of ZHttpClient2\Response');
         }
 
         $this->defaultResponseClass = $defaultResponseClass;

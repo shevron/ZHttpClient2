@@ -32,7 +32,7 @@ class String extends Entity implements Writable, Rewindable
     /**
      * Get the length in bytes of the entity
      *
-     * @see Zend\Http\Entity\Entity::getLength()
+     * @see ZHttpClient2\Entity\Entity::getLength()
      */
     public function getLength()
     {
@@ -42,7 +42,7 @@ class String extends Entity implements Writable, Rewindable
     /**
      * Write data to the stream
      *
-     * @see Zend\Http\Entity.Writable::write()
+     * @see ZHttpClient2\Entity\Writable::write()
      */
     public function write($data)
     {
@@ -55,7 +55,7 @@ class String extends Entity implements Writable, Rewindable
     /**
      * Set entity contents from string
      *
-     * @see Zend\Http\Entity\Writable::fromString()
+     * @see ZHttpClient2\Entity\Writable::fromString()
      */
     public function fromString($content)
     {
@@ -65,7 +65,7 @@ class String extends Entity implements Writable, Rewindable
     /**
      * Rewind entity
      *
-     * @see Zend\Http\Entity.Rewindable::rewind()
+     * @see ZHttpClient2\Entity\Rewindable::rewind()
      */
     public function rewind()
     {

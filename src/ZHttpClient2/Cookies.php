@@ -28,13 +28,13 @@ use ZHttpClient2\Response;
  * can be returned either in their native form (as Zend\Http\Header\Cookie objects) or as strings -
  * the later is suitable for sending as the value of the "Cookie" header in an HTTP request.
  * You can also choose, when returning more than one cookie, whether to get an array of strings
- * (by passing Zend\Http\Client\Cookies::COOKIE_STRING_ARRAY) or one unified string for all cookies
- * (by passing Zend\Http\Client\Cookies::COOKIE_STRING_CONCAT).
+ * (by passing ZHttpClient2\Client\Cookies::COOKIE_STRING_ARRAY) or one unified string for all cookies
+ * (by passing ZHttpClient2\Client\Cookies::COOKIE_STRING_CONCAT).
  *
  * @link       http://wp.netscape.com/newsref/std/cookie_spec.html for some specs.
  *
  * @category   Zend
- * @package    Zend\Http\Client
+ * @package    ZHttpClient2\Client
  */
 class Cookies extends Headers
 {

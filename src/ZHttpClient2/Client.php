@@ -25,7 +25,7 @@ use Zend\Stdlib\ResponseInterface;
  * Http client
  *
  * @category   Zend
- * @package    Zend\Http
+ * @package    ZHttpClient2
  */
 class Client implements DispatchableInterface
 {
@@ -72,7 +72,7 @@ class Client implements DispatchableInterface
     /**
      * Cookie storage object
      *
-     * @var Zend\Http\CookieStore\AbstractCookieStore
+     * @var ZHttpClient2\CookieStore\AbstractCookieStore
      */
     protected $cookieStore = null;
 
@@ -94,7 +94,7 @@ class Client implements DispatchableInterface
     /**
      * Options object
      *
-     * @var Zend\Http\ClientOptions
+     * @var ZHttpClient2\ClientOptions
      */
     protected $options = null;
 
@@ -102,7 +102,7 @@ class Client implements DispatchableInterface
      * Constructor
      *
      * @param string                  $uri
-     * @param Zend\Http\ClientOptions $options
+     * @param ZHttpClient2\ClientOptions $options
      */
     public function __construct(ClientOptions $options = null)
     {
@@ -116,8 +116,8 @@ class Client implements DispatchableInterface
     /**
      * Set configuration options for this HTTP client
      *
-     * @param  Zend\Http\ClientOptions $options
-     * @return Zend\Http\Client
+     * @param  ZHttpClient2\ClientOptions $options
+     * @return ZHttpClient2\Client
      * @throws Client\Exception
      */
     public function setOptions(ClientOptions $options)
@@ -135,7 +135,7 @@ class Client implements DispatchableInterface
     /**
      * Get options object
      *
-     * @return \Zend\Http\ClientOptions
+     * @return \ZHttpClient2\ClientOptions
      */
     public function getOptions()
     {
@@ -145,9 +145,9 @@ class Client implements DispatchableInterface
     /**
      * Set the transport adapter
      *
-     * @param  \Zend\Http\Transport\Transport|string transportort
-     * @return \Zend\Http\Client
-     * @throws \Zend\Http\Client\Exception
+     * @param  \ZHttpClient2\Transport\Transport|string transportort
+     * @return \ZHttpClient2\Client
+     * @throws \ZHttpClient2\Client\Exception
      */
     public function setTransport(HttpTransport $transport)
     {
@@ -163,7 +163,7 @@ class Client implements DispatchableInterface
     /**
      * Get the transport adapter
      *
-     * @return \Zend\Http\Transport\Transport
+     * @return \ZHttpClient2\Transport\Transport
      */
     public function getTransport()
     {
@@ -188,7 +188,7 @@ class Client implements DispatchableInterface
     /**
      * Return the current cookie storage object
      *
-     * @return Zend\Http\CookieStore\AbstractCookieStore
+     * @return ZHttpClient2\CookieStore\AbstractCookieStore
      */
     public function getCookieStore()
     {
@@ -202,8 +202,8 @@ class Client implements DispatchableInterface
     /**
      * Set an array of cookies
      *
-     * @param  Zend\Http\CookieStore\AbstractCookieStore $cookieStore
-     * @return Zend\Http\Client
+     * @param  ZHttpClient2\CookieStore\AbstractCookieStore $cookieStore
+     * @return ZHttpClient2\Client
      */
     public function setCookieStore(AbstractCookieStore $cookieStore)
     {
@@ -230,7 +230,7 @@ class Client implements DispatchableInterface
      * Set the global headers container
      *
      * @param  \Zend\Http\Headers $headers
-     * @return \Zend\Http\Client
+     * @return \ZHttpClient2\Client
      */
     public function setHeaders($headers)
     {
@@ -437,8 +437,8 @@ class Client implements DispatchableInterface
      * Can perform some tasks on incoming responses, such as read and store set
      * cookies
      *
-     * @param Zend\Http\Response $response The response to handle
-     * @param Zend\Http\Request  $request  The request that triggered the response
+     * @param ZHttpClient2\Response $response The response to handle
+     * @param ZHttpClient2\Request  $request  The request that triggered the response
      *
      */
     protected function handleResponse(Response $response, Request $request)
@@ -457,7 +457,7 @@ class Client implements DispatchableInterface
      * provided URL, without manually creating a request object
      *
      * @param  Zend\Uri\Http|string $url
-     * @return Zend\Http\Response
+     * @return ZHttpClient2\Response
      */
     public function get($url)
     {
@@ -473,7 +473,7 @@ class Client implements DispatchableInterface
      * @param  Zend\Uri\Http|string $url
      * @param  mixed                $content
      * @param  string               $contentType
-     * @return Zend\Http\Response
+     * @return ZHttpClient2\Response
      */
     public function post($url, $content = null, $contentType = null)
     {
@@ -507,7 +507,7 @@ class Client implements DispatchableInterface
      * @param  Zend\Uri\Http|string $url
      * @param  mixed                $content
      * @param  string               $contentType
-     * @return Zend\Http\Response
+     * @return ZHttpClient2\Response
      */
     public function put($url, $content, $contentType = null)
     {
@@ -531,7 +531,7 @@ class Client implements DispatchableInterface
      * Send an HTTP DELETE request to the specified URL
      *
      * @param  Zend\Uri\Http|string $url
-     * @return Zend\Http\Response
+     * @return ZHttpClient2\Response
      */
     public function delete($url)
     {

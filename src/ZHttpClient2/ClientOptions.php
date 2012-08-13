@@ -31,7 +31,7 @@ class ClientOptions extends AbstractOptions
      *
      * @var string
      */
-    protected $userAgent = 'Zend\Http\Client';
+    protected $userAgent = 'ZHttpClient2\Client';
 
     /**
      * Whether to encode cookies or not
@@ -43,7 +43,7 @@ class ClientOptions extends AbstractOptions
     /**
      * Transport configuration object
      *
-     * @var Zend\Http\Transport\TransportOptions
+     * @var ZHttpClient2\Transport\TransportOptions
      */
     protected $transportOptions = null;
 
@@ -92,7 +92,7 @@ class ClientOptions extends AbstractOptions
      *
      * If none was set, will return a default transport configuration object
      *
-     * @return Zend\Http\Transport\TransportOptions
+     * @return ZHttpClient2\Transport\TransportOptions
      */
     public function getTransportOptions()
     {
@@ -154,7 +154,7 @@ class ClientOptions extends AbstractOptions
     }
 
     /**
-     * @param \Zend\Http\Transport\TransportOptions $transportOptions
+     * @param \ZHttpClient2\Transport\TransportOptions $transportOptions
      */
     public function setTransportOptions(TransportOptions $transportOptions)
     {

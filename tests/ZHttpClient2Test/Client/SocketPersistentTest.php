@@ -37,7 +37,7 @@ class SocketPersistentTest extends SocketTest
      * @var array
      */
     protected $config = array(
-        'adapter'    => 'Zend\Http\Client\Adapter\Socket',
+        'adapter'    => 'ZHttpClient2\Client\Adapter\Socket',
         'persistent' => true,
         'keepalive'  => true
     );

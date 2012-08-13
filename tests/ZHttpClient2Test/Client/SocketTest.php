@@ -39,7 +39,7 @@ class SocketTest extends CommonHttpTests
      * @var array
      */
     protected $config = array(
-        'adapter' => 'Zend\Http\Client\Adapter\Socket'
+        'adapter' => 'ZHttpClient2\Client\Adapter\Socket'
     );
 
     /**
@@ -95,7 +95,7 @@ class SocketTest extends CommonHttpTests
     public function testSetConfigInvalidConfig($config)
     {
         $this->setExpectedException(
-            'Zend\Http\Client\Adapter\Exception\InvalidArgumentException',
+            'ZHttpClient2\Client\Adapter\Exception\InvalidArgumentException',
             'Array or Zend_Config object expected');
 
         $this->_adapter->setOptions($config);
@@ -149,7 +149,7 @@ class SocketTest extends CommonHttpTests
     public function testSetInvalidContextOptions($invalid)
     {
         $this->setExpectedException(
-            'Zend\Http\Client\Adapter\Exception\InvalidArgumentException',
+            'ZHttpClient2\Client\Adapter\Exception\InvalidArgumentException',
             'Expecting either a stream context resource or array');
 
         $adapter = new $this->config['adapter'];
@@ -192,7 +192,7 @@ class SocketTest extends CommonHttpTests
 
         try {
             $this->client->send();
-            $this->fail('Expected a timeout Zend\Http\Client\Adapter\Exception\TimeoutException');
+            $this->fail('Expected a timeout ZHttpClient2\Client\Adapter\Exception\TimeoutException');
         } catch (Adapter\Exception\TimeoutException $e) {
             $this->assertEquals(Adapter\Exception\TimeoutException::READ_TIMEOUT, $e->getCode());
         }

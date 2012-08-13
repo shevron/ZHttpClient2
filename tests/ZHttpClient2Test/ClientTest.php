@@ -23,14 +23,14 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     /**
      * HTTP client object
      *
-     * @var Zend\Http\Client
+     * @var ZHttpClient2\Client
      */
     protected $client = null;
 
     /**
      * HTTP transport object
      *
-     * @var Zend\Http\Transport\Test
+     * @var ZHttpClient2\Transport\Test
      */
     protected $transport = null;
 

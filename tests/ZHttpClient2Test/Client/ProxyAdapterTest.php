@@ -61,7 +61,7 @@ class ProxyAdapterTest extends SocketTest
                     $pass = TESTS_ZEND_HTTP_CLIENT_HTTP_PROXY_PASS;
 
             $this->config = array(
-                'adapter'    => '\Zend\Http\Client\Adapter\Proxy',
+                'adapter'    => '\ZHttpClient2\Client\Adapter\Proxy',
                 'proxy_host' => $host,
                 'proxy_port' => $port,
                 'proxy_user' => $user,
@@ -71,7 +71,7 @@ class ProxyAdapterTest extends SocketTest
             parent::setUp();
 
         } else {
-            $this->markTestSkipped('Zend\Http\Client proxy server tests are not enabled in TestConfiguration.php');
+            $this->markTestSkipped('ZHttpClient2\Client proxy server tests are not enabled in TestConfiguration.php');
         }
     }
 

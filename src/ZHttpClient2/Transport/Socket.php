@@ -16,15 +16,15 @@ class Socket implements Transport
      * @var array
      */
     protected static $contentEncodingFilters = array(
-        'identity' => 'Zend\Http\Transport\Filter\Identity',
-        'gzip'     => 'Zend\Http\Transport\Filter\Gzip',
-        'deflate'  => 'Zend\Http\Transport\Filter\Deflate',
+        'identity' => 'ZHttpClient2\Transport\Filter\Identity',
+        'gzip'     => 'ZHttpClient2\Transport\Filter\Gzip',
+        'deflate'  => 'ZHttpClient2\Transport\Filter\Deflate',
     );
 
     /**
      * Options object
      *
-     * @var Zend\Http\Transport\SocketOptions
+     * @var ZHttpClient2\Transport\SocketOptions
      */
     protected $options = null;
 
@@ -59,7 +59,7 @@ class Socket implements Transport
      * Content encoding filters are used to handle Content-Encoding of the
      * HTTP response body
      *
-     * @var null|Zend\Http\Transport\Filter\Filter
+     * @var null|ZHttpClient2\Transport\Filter\Filter
      */
     protected $contentEncodingFilter = null;
 
@@ -80,8 +80,8 @@ class Socket implements Transport
     /**
      * Set options for the socket transport object
      *
-     * @param  Zend\Http\Transport\SocketOptions $options
-     * @return Zend\Http\Transport\Socket
+     * @param  ZHttpClient2\Transport\SocketOptions $options
+     * @return ZHttpClient2\Transport\Socket
      */
     public function setOptions(Options $options)
     {
@@ -97,8 +97,8 @@ class Socket implements Transport
     /**
      * Get options for the socket transport object
      *
-     * @return Zend\Http\Transport\SocketOptions
-     * @see Zend\Http\Transport.Transport::getOptions()
+     * @return ZHttpClient2\Transport\SocketOptions
+     * @see ZHttpClient2\Transport\Transport::getOptions()
      */
     public function getOptions()
     {
@@ -153,10 +153,10 @@ class Socket implements Transport
     /**
      * Send HTTP request and return the response
      *
-     * @see              Zend\Http\Transport\Transport::send()
-     * @param  $request  Zend\Http\Request
-     * @param  $response Zend\Http\Response
-     * @return Zend\Http\Response
+     * @see              ZHttpClient2\Transport\Transport::send()
+     * @param  $request  ZHttpClient2\Request
+     * @param  $response ZHttpClient2\Response
+     * @return ZHttpClient2\Response
      */
     public function send(Request $request, Response $response = null)
     {
@@ -189,7 +189,7 @@ class Socket implements Transport
     /**
      * Connect to the remote server
      *
-     * @param  Zend\Http\Request                $request
+     * @param  ZHttpClient2\Request                $request
      * @throws Exception\ConfigurationException
      * @throws Exception\ConnectionException
      */
@@ -282,7 +282,7 @@ class Socket implements Transport
     /**
      * Send HTTP request to the server
      *
-     * @param  Zend\Http\Request             $request
+     * @param  ZHttpClient2\Request             $request
      * @throws Exception\ConnectionException
      */
     protected function sendRequest(Request $request)
@@ -318,7 +318,7 @@ class Socket implements Transport
     /**
      * Prepare and add any extra headers needed by the transport layer to the request
      *
-     * @param Zend\Http\Request $request
+     * @param ZHttpClient2\Request $request
      */
     protected function prepareExtraHeaders(Request $request)
     {
@@ -346,7 +346,7 @@ class Socket implements Transport
     /**
      * Send HTTP request body to the server
      *
-     * @param  string|Zend\Http\Entity\Entity $body
+     * @param  string|ZHttpClient2\Entity\Entity $body
      * @throws Exception\ConnectionException
      */
     protected function sendBody($body)
@@ -368,8 +368,8 @@ class Socket implements Transport
     /**
      * Read HTTP response from server
      *
-     * @param  $response Zend\Http\Response
-     * @return Zend\Http\Response
+     * @param  $response ZHttpClient2\Response
+     * @return ZHttpClient2\Response
      * @throws Exception\ConnectionException
      * @throws Exception\ProtocolException
      */
@@ -407,7 +407,7 @@ class Socket implements Transport
     /**
      * Read HTTP response headers from server
      *
-     * @param  Zend\Http\Response            $response
+     * @param  ZHttpClient2\Response            $response
      * @throws Exception\ConnectionException
      */
     protected function readResponseHeaders(Response $response)
@@ -442,7 +442,7 @@ class Socket implements Transport
     /**
      * Read HTTP response body from server
      *
-     * @param  Zend\Http\Response               $response
+     * @param  ZHttpClient2\Response               $response
      * @throws Exception\ConfigurationException
      * @throws Exception\ProtocolException
      */

@@ -24,14 +24,14 @@ class Test implements Transport
     /**
      * The default HTTP response returned if there are no responses in the queue
      *
-     * @var Zend\Http\Response
+     * @var ZHttpClient2\Response
      */
     protected $defaultResponse;
 
     /**
      * Options object
      *
-     * @var Zend\Http\Transport\Options
+     * @var ZHttpClient2\Transport\Options
      */
     protected $options = null;
 
@@ -40,7 +40,7 @@ class Test implements Transport
      *
      * This will return the pre-defined response object
      *
-     * @see Zend\Http\Transport\Transport::send()
+     * @see ZHttpClient2\Transport\Transport::send()
      */
     public function send(Request $request, Response $response = null)
     {
@@ -62,8 +62,8 @@ class Test implements Transport
     /**
      * Set configuration of transport adapter
      *
-     * @param  Zend\Http\Transport\Options   $options
-     * @return Zend\Http\Transport\Transport
+     * @param  ZHttpClient2\Transport\Options   $options
+     * @return ZHttpClient2\Transport\Transport
      */
     public function setOptions(Options $options)
     {
@@ -79,7 +79,7 @@ class Test implements Transport
      * transport adapter.
      *
      * @param  \SplQueue                 $queue
-     * @return \Zend\Http\Transport\Test
+     * @return \ZHttpClient2\Transport\Test
      */
     public function setRequestQueue(\SplQueue $queue = null)
     {
@@ -96,7 +96,7 @@ class Test implements Transport
      * Set the response queue object
      *
      * @param  \SplQueue                 $queue
-     * @return \Zend\Http\Transport\Test
+     * @return \ZHttpClient2\Transport\Test
      */
     public function setResponseQueue(\SplQueue $queue)
     {
@@ -110,7 +110,7 @@ class Test implements Transport
      *
      * This object will be returned when there are no responses in the queue
      *
-     * @param Zend\Http\Response $response
+     * @param ZHttpClient2\Response $response
      */
     public function setDefaultResponse(Response $response)
     {
@@ -120,8 +120,8 @@ class Test implements Transport
     /**
      * Get options for the test transport object
      *
-     * @return Zend\Http\Transport\Options
-     * @see    Zend\Http\Transport\Transport::getOptions()
+     * @return ZHttpClient2\Transport\Options
+     * @see    ZHttpClient2\Transport\Transport::getOptions()
      */
     public function getOptions()
     {
@@ -135,7 +135,7 @@ class Test implements Transport
     /**
      * Get the default response object, or null if none was set
      *
-     * @return Zend\Http\Response
+     * @return ZHttpClient2\Response
      */
     public function getDefaultResponse()
     {

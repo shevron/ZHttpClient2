@@ -12,7 +12,7 @@ class SmartBufferTest extends StringTest
     /**
      * Entity object
      *
-     * @var Zend\Http\Entity\SmartBuffer
+     * @var ZHttpClient2\Entity\SmartBuffer
      */
     protected $entity = null;
 

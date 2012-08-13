@@ -14,13 +14,13 @@ use ZHttpClient2\ClientStatic as HTTPClient;
 use ZHttpClient2\Client;
 
 /**
- * This are the test for the prototype of Zend\Http\Client
+ * This are the test for the prototype of ZHttpClient2\Client
  *
  * @category   Zend
- * @package    Zend\Http\Client
+ * @package    ZHttpClient2\Client
  * @subpackage UnitTests
- * @group      Zend\Http
- * @group      Zend\Http\Client
+ * @group      ZHttpClient2
+ * @group      ZHttpClient2\Client
  */
 class StaticClientTest extends \PHPUnit_Framework_TestCase
 {

@@ -46,7 +46,7 @@ class UrlEncodedFormData extends Entity implements Rewindable, FormDataHandler
      * Set the form data object
      *
      * @param  Zend\Stdlib\ParametersInterface     $formData
-     * @return Zend\Http\Entity\UrlEncodedFormData
+     * @return ZHttpClient2\Entity\UrlEncodedFormData
      */
     public function setFormData(ParametersInterface $formData)
     {
@@ -59,7 +59,7 @@ class UrlEncodedFormData extends Entity implements Rewindable, FormDataHandler
     /**
      * Prepare request headers before sending
      *
-     * @see Zend\Http\Entity\FormDataHandler::processRequestHeaders()
+     * @see ZHttpClient2\Entity\FormDataHandler::processRequestHeaders()
      */
     public function prepareRequestHeaders(Headers $headers)
     {
@@ -79,7 +79,7 @@ class UrlEncodedFormData extends Entity implements Rewindable, FormDataHandler
      * If there is no form data set or no more items in the container FALSE is
      * returned.
      *
-     * @see Zend\Http\Entity.Entity::read()
+     * @see ZHttpClient2\Entity\Entity::read()
      */
     public function read()
     {

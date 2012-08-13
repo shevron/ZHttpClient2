@@ -27,7 +27,7 @@ class Simple extends AbstractCookieStore
      * we actually store all cookies as a SetCookie header object - and there
      * is no need to convert the data into anything else.
      *
-     * @see Zend\Http\CookieStore\AbstractCookieStore::addCookieFromHeader()
+     * @see ZHttpClient2\CookieStore\AbstractCookieStore::addCookieFromHeader()
      */
     public function addCookieFromHeader(SetCookieHeader $header, HttpUri $defaultUri = null)
     {
@@ -59,7 +59,7 @@ class Simple extends AbstractCookieStore
     /**
      * Get an array of cookies matching a URL and some conditions
      *
-     * @see Zend\Http\CookieStore.AbstractCookieStore::getMatchingCookies()
+     * @see ZHttpClient2\CookieStore\AbstractCookieStore::getMatchingCookies()
      */
     public function getMatchingCookies($url, $includeSessionCookies = true, $now = null)
     {

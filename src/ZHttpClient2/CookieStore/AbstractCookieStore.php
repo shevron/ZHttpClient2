@@ -14,7 +14,7 @@ abstract class AbstractCookieStore implements \IteratorAggregate
      * Add a cookie to the storage from a Set-Cookie header
      *
      * @param  \Zend\Http\Header\SetCookie                $header
-     * @return \Zend\Http\CookieStore\AbstractCookieStore
+     * @return \ZHttpClient2\CookieStore\AbstractCookieStore
      */
     public function addCookieFromHeader(SetCookieHeader $header, HttpUri $defaultUri = null)
     {
@@ -38,9 +38,9 @@ abstract class AbstractCookieStore implements \IteratorAggregate
     /**
      * Read all cookies from an HTTP response
      *
-     * @param  \Zend\Http\Response                        $response
+     * @param  \ZHttpClient2\Response                        $response
      * @param  \Zend\Uri\Http                             $uri      HTTP URI to get defaults from
-     * @return \Zend\Http\CookieStore\AbstractCookieStore
+     * @return \ZHttpClient2\CookieStore\AbstractCookieStore
      */
     public function readCookiesFromResponse(Response $response, HttpUri $uri)
     {
@@ -58,7 +58,7 @@ abstract class AbstractCookieStore implements \IteratorAggregate
      * Get the 'Cookie:' header object containing all cookies matched for
      * a specific request
      *
-     * @param  \Zend\Http\Request       $request
+     * @param  \ZHttpClient2\Request       $request
      * @return \Zend\Http\Header\Cookie
      */
     public function getCookiesForRequest(Request $request)

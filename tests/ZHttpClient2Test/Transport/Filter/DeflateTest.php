@@ -12,7 +12,7 @@ class DeflateTest extends \PHPUnit_Framework_TestCase
     /**
      * Filter object
      *
-     * @var Zend\Http\Transport\Filter\Deflate
+     * @var ZHttpClient2\Transport\Filter\Deflate
      */
     protected $filter = null;
 

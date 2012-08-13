@@ -88,7 +88,7 @@ class Request extends Message implements RequestInterface
      * A factory that produces a Request object from a well-formed Http Request string
      *
      * @param  string             $string
-     * @return \Zend\Http\Request
+     * @return \ZHttpClient2\Request
      */
     public static function fromString($string)
     {
@@ -186,7 +186,7 @@ class Request extends Message implements RequestInterface
      * If an object is provided, it will be copied.
      *
      * @param  string|Zend\Uri\Http $uri
-     * @return Zend\Http\Request
+     * @return ZHttpClient2\Request
      */
     public function setUri($uri)
     {
@@ -340,7 +340,7 @@ class Request extends Message implements RequestInterface
      * primary API for value setting, for that see getHeaders())
      *
      * @param  \Zend\Http\Headers $headers
-     * @return \Zend\Http\Request
+     * @return \ZHttpClient2\Request
      */
     public function setHeaders(Headers $headers)
     {

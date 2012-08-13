@@ -57,7 +57,7 @@ class SmartBuffer extends Entity implements Writable, Rewindable
     /**
      * Read a chunk of data from the entity
      *
-     * @see Zend\Http\Entity.Entity::read()
+     * @see ZHttpClient2\Entity\Entity::read()
      */
     public function read()
     {
@@ -78,7 +78,7 @@ class SmartBuffer extends Entity implements Writable, Rewindable
     /**
      * Write data to the entity
      *
-     * @see Zend\Http\Entity.Writable::write()
+     * @see ZHttpClient2\Entity\Writable::write()
      */
     public function write($data)
     {
@@ -88,7 +88,7 @@ class SmartBuffer extends Entity implements Writable, Rewindable
     /**
      * Rewing cursor position to entity beginning
      *
-     * @see Zend\Http\Entity.Rewindable::rewind()
+     * @see ZHttpClient2\Entity\Rewindable::rewind()
      */
     public function rewind()
     {

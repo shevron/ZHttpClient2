@@ -15,10 +15,10 @@ use ZHttpClient2\Response;
 use ZHttpClient2\Request;
 
 /**
- * This are the test for the prototype of Zend\Http\Client
+ * This are the test for the prototype of ZHttpClient2\Client
  *
  * @category   Zend
- * @package    Zend\Http\Client
+ * @package    ZHttpClient2\Client
  * @subpackage UnitTests
  * @group      Zend_Http
  * @group      Zend_Http_Client
@@ -36,14 +36,14 @@ class UseCaseTest extends \PHPUnit_Framework_TestCase
     /**
      * Common HTTP client
      *
-     * @var \Zend\Http\Client
+     * @var \ZHttpClient2\Client
      */
     protected $client = null;
 
     /**
      * Common HTTP client adapter
      *
-     * @var \Zend\Http\Client\Adapter\AdapterInterface
+     * @var \ZHttpClient2\Client\Adapter\AdapterInterface
      */
     protected $adapter = null;
 
@@ -53,7 +53,7 @@ class UseCaseTest extends \PHPUnit_Framework_TestCase
      * @var array
      */
     protected $config = array(
-        'adapter'     => 'Zend\Http\Client\Adapter\Socket'
+        'adapter'     => 'ZHttpClient2\Client\Adapter\Socket'
     );
 
     /**

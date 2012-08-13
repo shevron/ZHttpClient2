@@ -24,7 +24,7 @@ class TestAdapterTest extends \PHPUnit_Framework_TestCase
     /**
      * Test adapter
      *
-     * @var \Zend\Http\Client\Adapter\Test
+     * @var \ZHttpClient2\Client\Adapter\Test
      */
     protected $adapter;
 
@@ -34,7 +34,7 @@ class TestAdapterTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->adapter = new \Zend\Http\Client\Adapter\Test();
+        $this->adapter = new \ZHttpClient2\Client\Adapter\Test();
     }
 
     /**
@@ -53,7 +53,7 @@ class TestAdapterTest extends \PHPUnit_Framework_TestCase
     public function testSetConfigThrowsOnInvalidConfig()
     {
         $this->setExpectedException(
-            'Zend\Http\Client\Adapter\Exception\InvalidArgumentException',
+            'ZHttpClient2\Client\Adapter\Exception\InvalidArgumentException',
             'Array or Traversable object expected');
 
         $this->adapter->setOptions('foo');
@@ -82,7 +82,7 @@ class TestAdapterTest extends \PHPUnit_Framework_TestCase
             // Make a connection that will fail
             $this->adapter->connect('http://foo');
             $this->fail();
-        } catch (\Zend\Http\Client\Adapter\Exception\RuntimeException $e) {
+        } catch (\ZHttpClient2\Client\Adapter\Exception\RuntimeException $e) {
             // Connect again to see that the next request does not fail
             $this->adapter->connect('http://foo');
         }
@@ -138,7 +138,7 @@ class TestAdapterTest extends \PHPUnit_Framework_TestCase
     {
         $this->adapter->read(); // pop out first response
 
-        $respObj = \Zend\Http\Response::fromString($testResponse);
+        $respObj = \ZHttpClient2\Response::fromString($testResponse);
 
         $this->adapter->addResponse($respObj);
         $this->assertEquals($testResponse, $this->adapter->read());

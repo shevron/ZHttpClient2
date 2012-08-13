@@ -46,7 +46,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
         $headers = new \Zend\Http\Headers();
 
         $ret = $response->setHeaders($headers);
-        $this->assertInstanceOf('Zend\Http\Response', $ret);
+        $this->assertInstanceOf('ZHttpClient2\Response', $ret);
         $this->assertSame($headers, $response->getHeaders());
     }
 
@@ -61,7 +61,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     public function testResponseSetStatusCodeThrowsExceptionOnInvalidCode()
     {
         $response = new Response;
-        $this->setExpectedException('Zend\Http\Exception\InvalidArgumentException', 'Invalid status code');
+        $this->setExpectedException('ZHttpClient2\Exception\InvalidArgumentException', 'Invalid status code');
         $response->setStatusCode(606);
     }
 
