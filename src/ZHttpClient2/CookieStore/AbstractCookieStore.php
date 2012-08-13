@@ -38,8 +38,8 @@ abstract class AbstractCookieStore implements \IteratorAggregate
     /**
      * Read all cookies from an HTTP response
      *
-     * @param  \ZHttpClient2\Response                        $response
-     * @param  \Zend\Uri\Http                             $uri      HTTP URI to get defaults from
+     * @param  \ZHttpClient2\Response $response
+     * @param  \Zend\Uri\Http         $uri      HTTP URI to get defaults from
      * @return \ZHttpClient2\CookieStore\AbstractCookieStore
      */
     public function readCookiesFromResponse(Response $response, HttpUri $uri)

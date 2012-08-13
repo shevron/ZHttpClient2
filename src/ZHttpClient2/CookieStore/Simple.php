@@ -14,7 +14,7 @@ class Simple extends AbstractCookieStore
 
     public function addCookie($name, $value, $domain, $expires = null, $path = null, $secure = false, $httpOnly = true)
     {
-        $cookie = new SetCookieHeader($name, $value, $domain, $expires, $path, $secure, $httpOnly);
+        $cookie = new SetCookieHeader($name, $value, $expires, $path, $domain, $secure, $httpOnly);
         $this->addCookieFromHeader($cookie);
 
         return $this;
@@ -80,7 +80,7 @@ class Simple extends AbstractCookieStore
         // Find matching cookies
         $cookies = array();
         foreach ($this->cookieRefs as $domain => $paths) {
-            if ($domain == $url->getHost() || preg_match('/\.' . preg_quote($domain) . '$/', $url->getHost())) {
+            if ($domain == $url->getHost() || preg_match('/\.' . preg_quote($domain, '/') . '$/', $url->getHost())) {
                 foreach ($paths as $path => $cookieRefs) {
                     if ($path == '/') $path = '';
                     if ($path == $url->getPath() || strpos($url->getPath(), $path . '/') === 0) {

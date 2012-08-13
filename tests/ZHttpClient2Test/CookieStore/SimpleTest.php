@@ -9,13 +9,14 @@ use ZHttpClient2\CookieStore\Simple as SimpleCookieStore;
 use ZHttpClient2\Request;
 use ZHttpClient2\Response;
 use Zend\Http\Header\Cookie;
+use Zend\Uri\Http as HttpUri;
 
 class SimpleTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Cookie store
      *
-     * @var Zend\Http\CookieStore\Simple
+     * @var ZHttpClient2\CookieStore\Simple
      */
     protected $cs = null;
 
@@ -105,7 +106,7 @@ class SimpleTest extends \PHPUnit_Framework_TestCase
             "\r\n"
         );
 
-        $this->cs->readCookiesFromResponse($response);
+        $this->cs->readCookiesFromResponse($response, new HttpUri('http://www.example.com/some/long/path'));
 
         // Count total numner of cookies
         $i = 0;
