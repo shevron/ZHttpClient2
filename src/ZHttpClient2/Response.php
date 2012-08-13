@@ -475,4 +475,14 @@ class Response extends Message implements ResponseInterface
 
         return $str;
     }
+
+    /**
+     * Allow PHP casting of this object
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->toString();
+    }
 }
