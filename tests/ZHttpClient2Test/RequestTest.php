@@ -63,7 +63,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         $headers = new \Zend\Http\Headers();
 
         $ret = $request->setHeaders($headers);
-        $this->assertInstanceOf('Zend\Http\Request', $ret);
+        $this->assertInstanceOf('ZHttpClient2\Request', $ret);
         $this->assertSame($headers, $request->getHeaders());
     }
 
@@ -89,11 +89,12 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('/foo', $request->getUri()->toString());
     }
 
+    /**
+     * @expectedException ZHttpClient2\Exception\InvalidArgumentException
+     */
     public function testRequestSetUriWillThrowExceptionOnInvalidArgument()
     {
         $request = new Request();
-
-        $this->setExpectedException('Zend\Uri\Exception\InvalidArgumentException', 'Expecting a string or a URI object, received ');
         $request->setUri(new \stdClass());
     }
 
@@ -105,11 +106,12 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('1.0', $request->getVersion());
     }
 
+    /**
+     * @expectedException ZHttpClient2\Exception\InvalidArgumentException
+     */
     public function testRequestSetVersionWillThrowExceptionOnInvalidArgument()
     {
         $request = new Request();
-
-        $this->setExpectedException('Zend\Http\Exception\InvalidArgumentException', 'not a valid version');
         $request->setVersion('1.2');
     }
 
@@ -138,7 +140,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider invalidMethodProvider
-     * @expectedException Zend\Http\Exception\InvalidArgumentException
+     * @expectedException ZHttpClient2\Exception\InvalidArgumentException
      */
     public function testExceptionOnInvalidMethod($method)
     {
