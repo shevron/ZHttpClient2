@@ -396,8 +396,12 @@ class Client implements DispatchableInterface
         }
 
         $uri = HttpUri::merge($request->getUri(), $location)->normalize();
-        $request->setUri($uri)
-                ->getHeaders()->removeHeader($request->getHeaders()->get('Host'));
+        $request->setUri($uri);
+
+        $headers = $request->getHeaders();
+        if ($headers->has('Host')) {
+            $headers->removeHeaders($headers->get('Host'));
+        }
 
         return $request;
     }
