@@ -3,6 +3,13 @@
     <testsuites>
         <testsuite name="ZHttpClient2 Module Tests">
             <directory>./ZHttpClient2Test</directory>
+	    <exclude>./ZHttpClient2Test/LegacyClient</exclude>
         </testsuite>
     </testsuites>
+
+    <filter>
+        <whitelist addUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">../src</directory>
+        </whitelist>
+    </filter>
 </phpunit>
