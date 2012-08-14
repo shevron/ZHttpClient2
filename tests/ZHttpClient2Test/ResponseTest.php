@@ -73,28 +73,6 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Foo Bar', $response->getContent());
     }
 
-    public function testGzipResponse ()
-    {
-        $response_text = file_get_contents(__DIR__ . '/_files/response_gzip');
-
-        $res = Response::fromString($response_text);
-
-        $this->assertEquals('gzip', $res->getHeaders()->get('Content-encoding')->getFieldValue());
-        $this->assertEquals('0b13cb193de9450aa70a6403e2c9902f', md5($res->getBody()));
-        $this->assertEquals('f24dd075ba2ebfb3bf21270e3fdc5303', md5($res->getContent()));
-    }
-
-    public function testDeflateResponse ()
-    {
-        $response_text = file_get_contents(__DIR__ . '/_files/response_deflate');
-
-        $res = Response::fromString($response_text);
-
-        $this->assertEquals('deflate', $res->getHeaders()->get('Content-encoding')->getFieldValue());
-        $this->assertEquals('0b13cb193de9450aa70a6403e2c9902f', md5($res->getBody()));
-        $this->assertEquals('ad62c21c3aa77b6a6f39600f6dd553b8', md5($res->getContent()));
-    }
-
     /**
      * Make sure wer can handle non-RFC complient "deflate" responses.
      *
@@ -114,28 +92,6 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('deflate', $res->getHeaders()->get('Content-encoding')->getFieldValue());
         $this->assertEquals('d82c87e3d5888db0193a3fb12396e616', md5($res->getBody()));
         $this->assertEquals('c830dd74bb502443cf12514c185ff174', md5($res->getContent()));
-    }
-
-    public function testChunkedResponse ()
-    {
-        $response_text = file_get_contents(__DIR__ . '/_files/response_chunked');
-
-        $res = Response::fromString($response_text);
-
-        $this->assertEquals('chunked', $res->getHeaders()->get('Transfer-encoding')->getFieldValue());
-        $this->assertEquals('0b13cb193de9450aa70a6403e2c9902f', md5($res->getBody()));
-        $this->assertEquals('c0cc9d44790fa2a58078059bab1902a9', md5($res->getContent()));
-    }
-
-    public function testChunkedResponseCaseInsensitiveZF5438()
-    {
-        $response_text = file_get_contents(__DIR__ . '/_files/response_chunked_case');
-
-        $res = Response::fromString($response_text);
-
-        $this->assertEquals('chunked', strtolower($res->getHeaders()->get('Transfer-encoding')->getFieldValue()));
-        $this->assertEquals('0b13cb193de9450aa70a6403e2c9902f', md5($res->getBody()));
-        $this->assertEquals('c0cc9d44790fa2a58078059bab1902a9', md5($res->getContent()));
     }
 
     public function testLineBreaksCompatibility()
