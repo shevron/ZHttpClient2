@@ -36,6 +36,7 @@ class DeflateTest extends \PHPUnit_Framework_TestCase
     public function testFilter($compressed, $expected)
     {
         $actual = $this->filter->filter($compressed);
+        $actual = md5($actual);
         $this->assertEquals($expected, $actual);
     }
 
@@ -58,14 +59,23 @@ class DeflateTest extends \PHPUnit_Framework_TestCase
             $compressed = substr($compressed, 5);
         }
 
+        $actual = md5($actual);
         $this->assertEquals($expected, $actual);
     }
 
+    /**
+     * Provide compressed content for testing along with the MD5 sum of the
+     * uncompressed original content to verify the output against
+     *
+     * @return array
+     */
     public function contentProvider()
     {
         return array(
-            array(gzdeflate('hello world'), 'hello world'),
-            array(gzdeflate(file_get_contents(__FILE__)), file_get_contents(__FILE__))
+            array(gzdeflate('hello world'), md5('hello world')),
+            array(gzdeflate(file_get_contents(__FILE__)), md5(file_get_contents(__FILE__))),
+            array(file_get_contents('data/deflate_data_01'), '0b13cb193de9450aa70a6403e2c9902f'),
+            array(file_get_contents('data/deflate_data_02_iis'), 'd82c87e3d5888db0193a3fb12396e616'),
         );
     }
 }
