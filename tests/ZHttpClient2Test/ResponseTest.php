@@ -14,7 +14,6 @@ use ZHttpClient2\Response;
 
 class ResponseTest extends \PHPUnit_Framework_TestCase
 {
-
     public function testResponseFactoryFromStringCreatesValidResponse()
     {
         $string = 'HTTP/1.0 200 OK' . "\r\n\r\n" . 'Foo Bar';
@@ -71,27 +70,6 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
         $response = Response::fromString($string);
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals('Foo Bar', $response->getContent());
-    }
-
-    /**
-     * Make sure wer can handle non-RFC complient "deflate" responses.
-     *
-     * Unlike stanrdard 'deflate' response, those do not contain the zlib header
-     * and trailer. Unfortunately some buggy servers (read: IIS) send those and
-     * we need to support them.
-     *
-     * @link http://framework.zend.com/issues/browse/ZF-6040
-     */
-    public function testNonStandardDeflateResponseZF6040()
-    {
-        $this->markTestSkipped('Not correctly handling non-RFC complient "deflate" responses');
-        $response_text = file_get_contents(__DIR__ . '/_files/response_deflate_iis');
-
-        $res = Response::fromString($response_text);
-
-        $this->assertEquals('deflate', $res->getHeaders()->get('Content-encoding')->getFieldValue());
-        $this->assertEquals('d82c87e3d5888db0193a3fb12396e616', md5($res->getBody()));
-        $this->assertEquals('c830dd74bb502443cf12514c185ff174', md5($res->getContent()));
     }
 
     public function testLineBreaksCompatibility()
@@ -214,15 +192,6 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(strtolower(str_replace("\n", "\r\n", $response_str)), strtolower($response->toString()), 'Response convertion to string does not match original string');
         $this->assertEquals(strtolower(str_replace("\n", "\r\n", $response_str)), strtolower((string) $response), 'Response convertion to string does not match original string');
-    }
-
-    public function testToStringGzip()
-    {
-        $response_str = $this->readResponse('response_gzip');
-        $response = Response::fromString($response_str);
-
-        $this->assertEquals(strtolower($response_str), strtolower($response->toString()), 'Response convertion to string does not match original string');
-        $this->assertEquals(strtolower($response_str), strtolower((string) $response), 'Response convertion to string does not match original string');
     }
 
     public function testGetHeaders()
