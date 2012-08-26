@@ -400,7 +400,7 @@ class Client implements DispatchableInterface
 
         $headers = $request->getHeaders();
         if ($headers->has('Host')) {
-            $headers->removeHeaders($headers->get('Host'));
+            $headers->removeHeader($headers->get('Host'));
         }
 
         return $request;
