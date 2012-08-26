@@ -30,22 +30,6 @@ use Zend\Stdlib\ResponseInterface;
 class Client implements DispatchableInterface
 {
     /**
-     * @const string Supported HTTP Authentication methods
-     */
-    const AUTH_BASIC  = 'basic';
-    const AUTH_DIGEST = 'digest';  // not implemented yet
-
-    /**
-     * @const string DIGEST Authentication
-     */
-    const DIGEST_REALM  = 'realm';
-    const DIGEST_QOP    = 'qop';
-    const DIGEST_NONCE  = 'nonce';
-    const DIGEST_OPAQUE = 'opaque';
-    const DIGEST_NC     = 'nc';
-    const DIGEST_CNONCE = 'cnonce';
-
-    /**
      * Default transport adapter class
      *
      * @var string
@@ -302,29 +286,7 @@ class Client implements DispatchableInterface
                 $response = base64_encode($user . ':' . $password);
                 break;
             case self::AUTH_DIGEST :
-                if (empty($digest)) {
-                    throw new Exception\InvalidArgumentException("The digest cannot be empty");
-                }
-                foreach ($digest as $key => $value) {
-                    if (!defined('self::DIGEST_' . strtoupper($key))) {
-                        throw new Exception\InvalidArgumentException("Invalid or not supported digest authentication parameter: '$key'");
-                    }
-                }
-                $ha1 = md5($user . ':' . $digest['realm'] . ':' . $password);
-                if (empty($digest['qop']) || strtolower($digest['qop']) == 'auth') {
-                    $ha2 = md5($this->getMethod() . ':' . $this->getUri()->getPath());
-                } elseif (strtolower($digest['qop']) == 'auth-int') {
-                     if (empty($entityBody)) {
-                        throw new Exception\InvalidArgumentException("I cannot use the auth-int digest authentication without the entity body");
-                     }
-                     $ha2 = md5($this->getMethod() . ':' . $this->getUri()->getPath() . ':' . md5($entityBody));
-                }
-                if (empty($digest['qop'])) {
-                    $response = md5($ha1 . ':' . $digest['nonce'] . ':' . $ha2);
-                } else {
-                    $response = md5($ha1 . ':' . $digest['nonce'] . ':' . $digest['nc']
-                                    . ':' . $digest['cnonce'] . ':' . $digest['qoc'] . ':' . $ha2);
-                }
+
                 break;
         }
 

@@ -69,31 +69,56 @@ class Digest implements AuthenticationProviderInterface
         /* Copied from old Http\Client: */
         /* @todo: Implement */
 
-        /*
-        if (empty($digest)) {
-            throw new Exception\InvalidArgumentException("The digest cannot be empty");
+        // Check that values for challange parameters were set
+
+        $response = $this->calculateChallangeResponse($request);
+
+        $headerParams = array(
+            'username' => $this->username,
+            'realm'    => $this->realm,
+            'nonce'    => $this->nonce,
+            'uri'      => $request->getUri(),
+            'qop'      => $this->qop,
+        );
+
+        if ($this->qop) {
+            $headerParams['cnonce'] = $this->cnonce;
+            $headerParams['nc'] = sprintf("%08x", $this->nc);
         }
-        foreach ($digest as $key => $value) {
-            if (!defined('self::DIGEST_' . strtoupper($key))) {
-                throw new Exception\InvalidArgumentException("Invalid or not supported digest authentication parameter: '$key'");
-            }
+
+        $header = "Digest ";
+        foreach($headerParams as $key => $value) {
+            $header .= "$key=\"$value\", ";
         }
-        $ha1 = md5($user . ':' . $digest['realm'] . ':' . $password);
-        if (empty($digest['qop']) || strtolower($digest['qop']) == 'auth') {
-            $ha2 = md5($this->getMethod() . ':' . $this->getUri()->getPath());
-        } elseif (strtolower($digest['qop']) == 'auth-int') {
-            if (empty($entityBody)) {
-                throw new Exception\InvalidArgumentException("I cannot use the auth-int digest authentication without the entity body");
-            }
-            $ha2 = md5($this->getMethod() . ':' . $this->getUri()->getPath() . ':' . md5($entityBody));
+
+        $header .= "response=\"$response\"";
+
+        $request->getHeaders()->addHeaderLine("Authorization", $header);
+    }
+
+    /**
+     * Calculate the response to the authentication challange
+     *
+     * @param  Request $request
+     * @return string
+     */
+    protected function calculateChallangeResponse(Request $request)
+    {
+        $ha1 = md5($this->username . ':' . $this->realm . ':' . $this->password);
+        if (empty($this->qop) || strtolower($this->qop) == 'auth') {
+            $ha2 = md5($request->getMethod() . ':' . $request->getUri()->getPath());
+        } elseif (strtolower($this->qop) == 'auth-int') {
+            $ha2 = md5($this->getMethod() . ':' . $this->getUri()->getPath() . ':' . md5($request->getContent()));
         }
-        if (empty($digest['qop'])) {
-            $response = md5($ha1 . ':' . $digest['nonce'] . ':' . $ha2);
+
+        if (empty($this->qop)) {
+            $response = md5($ha1 . ':' . $this->nonce . ':' . $ha2);
         } else {
-            $response = md5($ha1 . ':' . $digest['nonce'] . ':' . $digest['nc']
-                    . ':' . $digest['cnonce'] . ':' . $digest['qoc'] . ':' . $ha2);
+            $response = md5($ha1 . ':' . $this->nonce . ':' . $this->nc . ':' .
+                    $this->cnonce . ':' . $this->qoc . ':' . $ha2);
         }
-        */
+
+        return $response;
     }
 
     /**
@@ -107,6 +132,16 @@ class Digest implements AuthenticationProviderInterface
      */
     protected function parseAuthenticateHeader(WWWAuthenticate $header)
     {
+        $headerValue = $header->getFieldValue();
+
+        if (strtolower(substr($headerValue, 0, 7)) != 'Digest ') {
+            return false; // Not a Digest WWW-Authenticate header
+        }
+
+        $headerValue = trim(substr($headerValue, 6));
+
+        $authParams = explode(',', $headerValue);
+
         return array();
     }
 }
