@@ -7,13 +7,13 @@
     ],
     "autoload": {
         "psr-0": {
-            "ZHttpClient2": ""
+            "ZHttpClient2//": "src/"
         }
     },
     "require": {
         "php": ">=5.3.3",
-        "zendframework/zend-loader": "self.version",
-        "zendframework/zend-stdlib": "self.version",
-        "zendframework/zend-uri": "self.version"
+        "zendframework/zend-loader": "2.x",
+        "zendframework/zend-stdlib": "2.x",
+        "zendframework/zend-uri": "2.x"
     }
 }
