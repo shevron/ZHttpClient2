@@ -172,7 +172,7 @@ class Client implements DispatchableInterface
     /**
      * Return the current cookie storage object
      *
-     * @return ZHttpClient2\CookieStore\AbstractCookieStore
+     * @return \ZHttpClient2\CookieStore\AbstractCookieStore
      */
     public function getCookieStore()
     {
@@ -377,7 +377,7 @@ class Client implements DispatchableInterface
             }
         }
 
-        $existingCookies = $request->getCookie(); /* @var Zend\Http\Header\Cookie */
+        $existingCookies = $request->getCookie(); /* @var \Zend\Http\Header\Cookie */
         $cookieHeader = $this->getCookieStore()->getCookiesForRequest($request);
 
         if ($existingCookies) {

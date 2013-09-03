@@ -80,6 +80,7 @@ class Simple extends AbstractCookieStore
         // Find matching cookies
         $cookies = array();
         foreach ($this->cookieRefs as $domain => $paths) {
+            $domain = ltrim($domain, '.');
             if ($domain == $url->getHost() || preg_match('/\.' . preg_quote($domain, '/') . '$/', $url->getHost())) {
                 foreach ($paths as $path => $cookieRefs) {
                     if ($path == '/') $path = '';
