@@ -383,7 +383,10 @@ class Client implements DispatchableInterface
         if ($existingCookies) {
             $request->getHeaders()->removeHeader($existingCookies);
             foreach ($existingCookies as $key => $value) {
-                $cookieHeader[$key] = $value;
+                // Cookies from cookie store take precedence over old cookies
+                if (! isset($cookieHeader[$key])) {
+                    $cookieHeader[$key] = $value;
+                }
             }
         }
 
