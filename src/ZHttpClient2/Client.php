@@ -347,6 +347,10 @@ class Client implements DispatchableInterface
         // end of some headers
         $location = trim($response->getHeaders()->get('Location')->getFieldValue());
 
+        if (! $request) {
+            $request = new Request();
+        }
+
         // Check whether we send the exact same request again, or drop the parameters
         // and send a GET request
         if ($response->getStatusCode() == 303 ||
@@ -426,7 +430,7 @@ class Client implements DispatchableInterface
      * provided URL, without manually creating a request object
      *
      * @param  Zend\Uri\Http|string $url
-     * @return ZHttpClient2\Response
+     * @return Response
      */
     public function get($url)
     {
