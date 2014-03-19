@@ -10,6 +10,7 @@
 
 namespace ZHttpClient2;
 
+use Zend\Http\Header\UserAgent;
 use Zend\Uri\Http as HttpUri;
 use Zend\Http\Headers;
 use Zend\Http\Header\Cookie;
@@ -379,6 +380,11 @@ class Client implements DispatchableInterface
             if (! $request->getHeaders()->has($key)) {
                 $request->getHeaders()->addHeader($header);
             }
+        }
+
+        if (! $request->getHeaders()->has('User-agent')) {
+            $header = UserAgent::fromString("User-agent: " . $this->getOptions()->getUserAgent());
+            $request->getHeaders()->addHeader($header);
         }
 
         $existingCookies = $request->getCookie(); /* @var \Zend\Http\Header\Cookie */
