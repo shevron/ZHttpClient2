@@ -5,6 +5,7 @@ namespace ZHttpClient2\CookieStore;
 use Zend\Http\Header\Exception\InvalidArgumentException;
 use Zend\Http\Header\SetCookie as SetCookieHeader;
 use Zend\Http\Header\Cookie as CookieHeader;
+use Zend\Http\Header\SetCookie;
 use Zend\Uri\Http as HttpUri;
 use ZHttpClient2\Request;
 use ZHttpClient2\Response;
@@ -71,8 +72,12 @@ abstract class AbstractCookieStore implements \IteratorAggregate
     public function getCookiesForRequest(Request $request)
     {
         $cookies = $this->getMatchingCookies($request->getUri());
+        $nvPairs = array();
+        foreach($cookies as $setCookie) { /* @var $setCookie SetCookie */
+            $nvPairs[$setCookie->getName()] = $setCookie->getValue();
+        }
 
-        return CookieHeader::fromSetCookieArray($cookies);
+        return new CookieHeader($nvPairs);
     }
 
     abstract public function addCookie($name, $value, $domain, $expires = null, $path = null, $secure = false, $httpOnly = true);
