@@ -2,6 +2,7 @@
 
 namespace ZHttpClient2\Entity;
 
+use Zend\Stdlib\Parameters;
 use Zend\Stdlib\ParametersInterface;
 use
     Zend\Http\Headers;
@@ -25,17 +26,27 @@ class UrlEncodedFormData extends Entity implements Rewindable, FormDataHandler
     /**
      * Create a new Entity object
      *
-     * @param Zend\Stdlib\Parameters $formData
+     * @param Parameters $formData
      */
-    public function __construct(Parameters $formData = null)
+    public function __construct($formData = null)
     {
-        if ($formData) $this->setFormData($formData);
+        if (is_array($formData)) {
+            $formData = new Parameters($formData);
+        }
+
+        if ($formData) {
+            if (! $formData instanceof ParametersInterface) {
+                throw new \InvalidArgumentException("Expecting either an array or a ParametersInterface object");
+            }
+
+            $this->setFormData($formData);
+        }
     }
 
     /**
      * Get form data container object
      *
-     * @return \Zend\Stdlib\Parameters
+     * @return Parameters | null
      */
     public function getFormData()
     {
