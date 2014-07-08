@@ -4,8 +4,7 @@ namespace ZHttpClient2\Entity;
 
 use Zend\Stdlib\Parameters;
 use Zend\Stdlib\ParametersInterface;
-use
-    Zend\Http\Headers;
+use Zend\Http\Headers;
 
 class UrlEncodedFormData extends Entity implements Rewindable, FormDataHandler
 {
