@@ -12,7 +12,7 @@ class SocketOptions extends Options
      *
      * @var integer
      */
-    protected $sslCryptoType = STREAM_CRYPTO_METHOD_SSLv23_CLIENT;
+    protected $sslCryptoType = STREAM_CRYPTO_METHOD_TLS_CLIENT;
 
     /**
      * @return the $sslCryptoType
