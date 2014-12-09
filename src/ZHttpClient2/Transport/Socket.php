@@ -257,6 +257,9 @@ class Socket implements Transport
                 throw new Exception\ConnectionException("Unable to connect to $remoteServer: [$errno] $errstr");
             }
 
+            // Enable read timeout on stream
+            stream_set_timeout($this->socket, $this->options->getTimeout());
+
             $this->log("TCP connection to $remoteServer established", Logger::INFO);
 
             $this->connectedTo = $remoteServer;
@@ -625,7 +628,16 @@ class Socket implements Transport
      */
     protected function readLine()
     {
-        return fgets($this->socket);
+        $result = fgets($this->socket);
+        if ($result === false) {
+            // Check for timeout
+            $meta = stream_get_meta_data($this->socket);
+            if ($meta['timed_out']) {
+                throw new Exception\ConnectionException(
+                    "Reading from server has timed out after {$this->options->getTimeout()} seconds"
+                );
+            }
+        }
     }
 
     /**
