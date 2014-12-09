@@ -638,6 +638,8 @@ class Socket implements Transport
                 );
             }
         }
+
+        return $result;
     }
 
     /**
