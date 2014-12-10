@@ -285,7 +285,7 @@ class Socket implements Transport
     /**
      * Send HTTP request to the server
      *
-     * @param  ZHttpClient2\Request             $request
+     * @param  \ZHttpClient2\Request $request
      * @throws Exception\ConnectionException
      */
     protected function sendRequest(Request $request)
@@ -321,7 +321,7 @@ class Socket implements Transport
     /**
      * Prepare and add any extra headers needed by the transport layer to the request
      *
-     * @param ZHttpClient2\Request $request
+     * @param \ZHttpClient2\Request $request
      */
     protected function prepareExtraHeaders(Request $request)
     {
@@ -349,7 +349,7 @@ class Socket implements Transport
     /**
      * Send HTTP request body to the server
      *
-     * @param  string|ZHttpClient2\Entity\Entity $body
+     * @param  string|\ZHttpClient2\Entity\Entity $body
      * @throws Exception\ConnectionException
      */
     protected function sendBody($body)
@@ -371,8 +371,8 @@ class Socket implements Transport
     /**
      * Read HTTP response from server
      *
-     * @param  $response ZHttpClient2\Response
-     * @return ZHttpClient2\Response
+     * @param  $response \ZHttpClient2\Response
+     * @return \ZHttpClient2\Response
      * @throws Exception\ConnectionException
      * @throws Exception\ProtocolException
      */
@@ -410,7 +410,7 @@ class Socket implements Transport
     /**
      * Read HTTP response headers from server
      *
-     * @param  ZHttpClient2\Response            $response
+     * @param  \ZHttpClient2\Response            $response
      * @throws Exception\ConnectionException
      */
     protected function readResponseHeaders(Response $response)
@@ -445,7 +445,7 @@ class Socket implements Transport
     /**
      * Read HTTP response body from server
      *
-     * @param  ZHttpClient2\Response               $response
+     * @param  \ZHttpClient2\Response               $response
      * @throws Exception\ConfigurationException
      * @throws Exception\ProtocolException
      */
