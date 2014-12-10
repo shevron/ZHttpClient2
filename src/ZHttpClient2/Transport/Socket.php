@@ -628,18 +628,7 @@ class Socket implements Transport
      */
     protected function readLine()
     {
-        $result = fgets($this->socket);
-        if ($result === false) {
-            // Check for timeout
-            $meta = stream_get_meta_data($this->socket);
-            if ($meta['timed_out']) {
-                throw new Exception\ConnectionException(
-                    "Reading from server has timed out after {$this->options->getTimeout()} seconds"
-                );
-            }
-        }
-
-        return $result;
+        return $this->checkSocketReadTimeout(fgets($this->socket));
     }
 
     /**
@@ -650,6 +639,21 @@ class Socket implements Transport
      */
     protected function readLength($length)
     {
-        return fread($this->socket, $length);
+        return $this->checkSocketReadTimeout(fread($this->socket, $length));
+    }
+
+    protected function checkSocketReadTimeout($result)
+    {
+        if ($result === false) {
+            // Check for timeout
+            $meta = stream_get_meta_data($this->socket);
+            if (isset($meta['timed_out']) && $meta['timed_out']) {
+                throw new Exception\ConnectionException(
+                    "Reading from server has timed out after {$this->options->getTimeout()} seconds"
+                );
+            }
+        }
+
+        return $result;
     }
 }
