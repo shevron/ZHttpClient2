@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework (http://framework.zend.com/)
  *
@@ -194,15 +195,13 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function getMethods($providerContext, $trueMethod = null)
     {
-        $refClass = new \ReflectionClass('Zend\Http\Request');
+        $methods = array('GET', 'POST', 'PUT', 'DELETE');
         $return = array();
-        foreach ($refClass->getConstants() as $cName => $cValue) {
-            if (substr($cName, 0, 6) == 'METHOD') {
-                if ($providerContext) {
-                    $return[] = array($cValue);
-                } else {
-                    $return[strtolower($cValue)] = ($trueMethod == $cValue) ? true : false;
-                }
+        foreach ($methods as $method) {
+            if ($providerContext) {
+                $return[] = array($method);
+            } else {
+                $return[strtolower($method)] = ($trueMethod == $method);
             }
         }
 

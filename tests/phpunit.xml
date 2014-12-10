@@ -3,7 +3,7 @@
     <testsuites>
         <testsuite name="ZHttpClient2 Module Tests">
             <directory>./ZHttpClient2Test</directory>
-	    <exclude>./ZHttpClient2Test/LegacyClient</exclude>
+            <exclude>./ZHttpClient2Test/LegacyClient</exclude>
         </testsuite>
     </testsuites>
 
