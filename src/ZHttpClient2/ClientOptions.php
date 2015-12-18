@@ -92,7 +92,7 @@ class ClientOptions extends AbstractOptions
      *
      * If none was set, will return a default transport configuration object
      *
-     * @return ZHttpClient2\Transport\TransportOptions
+     * @return TransportOptions
      */
     public function getTransportOptions()
     {
