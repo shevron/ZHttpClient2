@@ -99,7 +99,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
     public function testSettingGlobalHeader()
     {
-        $uaString = "MyHttpClient\1.1";
+        $uaString = "MyHttpClient/1.1";
         $this->client->getHeaders()->addHeaderLine("User-agent: $uaString");
 
         $request = new Request();
@@ -113,8 +113,8 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
     public function testSettingGlobalHeaderDoesntOverrideLocalHeader()
     {
-        $uaString = "OtherHttpClient\1.0";
-        $this->client->getHeaders()->addHeaderLine("User-agent: MyHttpClient\1.1");
+        $uaString = "OtherHttpClient/1.0";
+        $this->client->getHeaders()->addHeaderLine("User-agent: MyHttpClient/1.1");
 
         $request = Request::fromString("GET / HTTP/1.1\r\nUser-agent: $uaString\r\n\r\n");
         $request->setUri('http://www.example.com/');
