@@ -391,14 +391,17 @@ class Socket implements Transport
             throw new Exception\ProtocolException("Failed reading response status line from $this->connectedTo");
         }
         $line = trim($line);
-        if (! preg_match('|^HTTP/([\d\.]+) (\d+) (.+)$|m', $line, $matches)) {
+        if (! preg_match('|^HTTP/([\d\.]+) (\d+)(?: (.+))?$|m', $line, $matches)) {
             throw new Exception\ProtocolException("Response status line is malformed: '$line'");
         }
         $this->log("Got HTTP response status line: $line", Logger::DEBUG);
 
         $response->setVersion($matches[1])
-                 ->setStatusCode($matches[2])
-                 ->setReasonPhrase($matches[3]);
+                 ->setStatusCode($matches[2]);
+
+        if (isset($matches[3])) {
+            $response->setReasonPhrase($matches[3]);
+        }
 
         $this->readResponseHeaders($response);
 
